@@ -107,9 +107,7 @@ module.exports = (app) => {
 
             Usuario.update(where, set)
             .then(() => res.redirect('/contatos'))
-            .catch(() => res.redirect('/'))
-
-            
+            .catch(() => res.redirect('/'))        
         }
     }
 

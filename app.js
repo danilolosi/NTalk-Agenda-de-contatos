@@ -12,8 +12,9 @@ const bluebird = require('bluebird')
 const config = require('./config')
 const error = require('./middlewares/error')
 
+const { passwordMongoDB } = require('./password.config')
 mongoose.Promise = bluebird
-global.db = mongoose.connect('mongodb+srv://danilo:1234@ntalk-6rsri.gcp.mongodb.net/ntalk?retryWrites=true&w=majority', { useMongoClient: true })
+global.db = mongoose.connect(`mongodb+srv://danilo:${passwordMongoDB}@ntalk-6rsri.gcp.mongodb.net/ntalk?retryWrites=true&w=majority`, { useMongoClient: true })
 
 const app = express()
 const server = http.Server(app)
