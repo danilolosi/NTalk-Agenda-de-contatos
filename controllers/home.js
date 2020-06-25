@@ -1,5 +1,7 @@
 module.exports = (app) =>{
 
+    const Usuario = app.models.usuario
+
     const HomeController = {
         index(req,res){
             res.render('home/index')
@@ -10,13 +12,32 @@ module.exports = (app) =>{
             const {usuario} = req.body
             const {email, nome } = usuario
 
-            if(email && nome){
-                usuario.contatos = []
+            const where = {
+                email, 
+                nome
+            }
+
+            const set = {
+                $setOnInsert: {
+                    email, 
+                    nome, 
+                    contatos: []
+                }
+            }
+
+            const options = {
+                upsert: true,
+                runValidators: true,
+                new: true
+            }
+
+            Usuario.findOneAndUpdate(where, set, options)
+            .select('email nome')
+            .then((usuario) => {
                 req.session.usuario = usuario
                 res.redirect('/contatos')
-            }else{
-                res.redirect('/')
-            }
+            })
+            .catch(() => res.redirect('/'))
         },
 
         logout(req,res){

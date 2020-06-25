@@ -7,8 +7,13 @@ const bodyParser = require('body-parser')
 const cookie = require('cookie')
 const expressSession = require('express-session')
 const methodOverride = require('method-override')
+const mongoose = require('mongoose')
+const bluebird = require('bluebird')
 const config = require('./config')
 const error = require('./middlewares/error')
+
+mongoose.Promise = bluebird
+global.db = mongoose.connect('mongodb+srv://danilo:1234@ntalk-6rsri.gcp.mongodb.net/ntalk?retryWrites=true&w=majority', { useMongoClient: true })
 
 const app = express()
 const server = http.Server(app)
