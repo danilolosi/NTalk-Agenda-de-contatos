@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js",
+    "start": "node clusters.js",
     "test": "SET NODE_ENV=test && mocha test/**/*.js --exit"
   },
   "dependencies": {
