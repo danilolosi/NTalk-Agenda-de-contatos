@@ -7,14 +7,8 @@ const bodyParser = require('body-parser')
 const cookie = require('cookie')
 const expressSession = require('express-session')
 const methodOverride = require('method-override')
-const mongoose = require('mongoose')
-const bluebird = require('bluebird')
 const config = require('./config')
 const error = require('./middlewares/error')
-
-const { passwordMongoDB } = require('./password.config')
-mongoose.Promise = bluebird
-global.db = mongoose.connect(`mongodb+srv://danilo:${passwordMongoDB}@ntalk-6rsri.gcp.mongodb.net/ntalk?retryWrites=true&w=majority`, { useMongoClient: true })
 
 const app = express()
 const server = http.Server(app)
@@ -61,3 +55,5 @@ consign({})
   app.use(error.serverError)
 
 server.listen(3000, () => console.log('Ntalk no ar'))
+
+module.exports = app

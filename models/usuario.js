@@ -1,5 +1,5 @@
 const Schema = require('mongoose').Schema
-const mongoose = require('mongoose')
+const db = require('../libs/db')
 
 module.exports = () => {
     const contato = Schema({
@@ -20,5 +20,5 @@ module.exports = () => {
         contatos: [contato]
     })
 
-    return mongoose.model('usuarios', usuario)
+    return db.model('usuarios', usuario)
 }
