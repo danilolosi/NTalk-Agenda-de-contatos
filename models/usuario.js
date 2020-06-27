@@ -1,5 +1,5 @@
 const Schema = require('mongoose').Schema
-const db = require('../libs/db')
+const db = require('../libs/db-mongoose')
 
 module.exports = () => {
     const contato = Schema({

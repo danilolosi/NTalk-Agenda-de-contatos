@@ -1,9 +1,10 @@
-const { passwordMongoDB , passwordRedis} = require('../password.config')
+const { passwordMongoDB } = require('../password.config')
+
 const mongoose = require('mongoose')
 const bluebird = require('bluebird')
-const redis = require('redis')
 
 const currentEnv = process.env.NODE_ENV || 'development'
+
 const envURL = {
     test: `mongodb+srv://danilo:${passwordMongoDB}@ntalk-6rsri.gcp.mongodb.net/ntalk_teste?retryWrites=true&w=majority`,
     development: `mongodb+srv://danilo:${passwordMongoDB}@ntalk-6rsri.gcp.mongodb.net/ntalk?retryWrites=true&w=majority`
@@ -15,3 +16,6 @@ mongoose.connect(envURL[currentEnv.trim()],  {
     useFindAndModify: false,
     useUnifiedTopology: true
 })
+
+module.exports = mongoose
+

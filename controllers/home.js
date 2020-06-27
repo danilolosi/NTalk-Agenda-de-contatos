@@ -28,7 +28,7 @@ module.exports = (app) =>{
             const options = {
                 upsert: true,
                 runValidators: true,
-                new: true
+                new: true,
             }
 
             Usuario.findOneAndUpdate(where, set, options)
