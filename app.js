@@ -35,9 +35,9 @@ app.use(methodOverride('_method'))
 app.use(
   express.static(
     path.join(__dirname, 'public'),
-    {maxAge: 3600000}
-    )
+    config.cache
   )
+)
 
 app.use(csurf())
 app.use((req,res,next) => {
