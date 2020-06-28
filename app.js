@@ -4,6 +4,7 @@ const http = require('http')
 const socketIO = require('socket.io')
 const consign = require('consign')
 const bodyParser = require('body-parser')
+const csurf = require('csurf')
 const cookie = require('cookie')
 const compression = require('compression')
 const expressSession = require('express-session')
@@ -37,6 +38,12 @@ app.use(
     {maxAge: 3600000}
     )
   )
+
+app.use(csurf())
+app.use((req,res,next) => {
+  res.locals._csrf = req.csrfToken()
+  next()
+})
 
 io.adapter(redisAdapter({host: connection.host , port: connection.port, auth_pass: connection.auth_pass}))
 io.use((socket,next) => {
