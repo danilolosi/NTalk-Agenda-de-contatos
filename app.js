@@ -18,9 +18,9 @@ const RedisStore = require('connect-redis')(expressSession)
 const app = express()
 const server = http.Server(app)
 const io = socketIO(server)
-const store = new RedisStore({client: redisClient,
-                              prefix: config.sessionKey})
+const store = new RedisStore({client: redisClient, prefix: config.sessionKey})
 
+app.disable('x-powered-by')
 app.set('views', path.join(__dirname , 'views'))
 app.set('view engine', 'ejs')
 app.use(compression())
