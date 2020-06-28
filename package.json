@@ -5,11 +5,12 @@
   "private": true,
   "scripts": {
     "start": "SET DEBUG=* && node clusters >> app.log",
-    "test": "SET NODE_ENV=test && mocha test/**/*.js --exit"
+    "test": "SET NODE_ENV=test && mocha test/**/*.js"
   },
   "dependencies": {
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "connect-redis": "^3.4.2",
     "consign": "^0.1.6",
     "cookie": "^0.4.1",
